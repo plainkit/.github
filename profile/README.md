@@ -1,10 +1,10 @@
-# BloxUI
+# Plain
 
 Type-safe HTML component library for Go with compile-time validation and zero runtime overhead.
 
-## What is BloxUI?
+## What is Plain?
 
-BloxUI generates HTML using pure Go functions instead of template engines. Each HTML element is represented by a function that accepts typed arguments, providing compile-time safety and IDE autocomplete support.
+Plain generates HTML using pure Go functions instead of template engines. Each HTML element is represented by a function that accepts typed arguments, providing compile-time safety and IDE autocomplete support.
 
 ```go
 // This compiles and works
@@ -21,20 +21,20 @@ input := Input(Href("/invalid")) // Compile error
 
 ## Core Libraries
 
-**[blox](https://github.com/bloxui/blox)** - HTML component generation
+**[blox](https://github.com/plainkit/blox)** - HTML component generation
 
 - Type-safe HTML elements with element-specific attributes
 - Compile-time validation prevents invalid HTML structures
 - Zero runtime overhead through method dispatch resolution
 - Modular architecture with one file per element type
 
-**[ui](https://github.com/bloxui/ui)** - Pre-built components
+**[ui](https://github.com/plainkit/ui)** - Pre-built components
 
 - Modern UI components with consistent styling
 - Accessibility features built-in
 - Compose with core blox elements seamlessly
 
-**[icons](https://github.com/bloxui/icons)** - Icon libraries
+**[icons](https://github.com/plainkit/icons)** - Icon libraries
 
 - Type-safe Lucide icons as Go functions
 - Customizable size, stroke, and color properties
@@ -85,7 +85,7 @@ package main
 
 import (
     "fmt"
-    . "github.com/bloxui/blox"
+    . "github.com/plainkit/blox"
 )
 
 func main() {
@@ -94,7 +94,7 @@ func main() {
         Head(HeadTitle(Text("My Page"))),
         Body(
             H1(Text("Hello, World!")),
-            P(Text("Built with Blox")),
+            P(Text("Built with Plain")),
         ),
     )
 
