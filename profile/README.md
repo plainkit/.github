@@ -21,7 +21,7 @@ input := Input(Href("/invalid")) // Compile error
 
 ## Core Libraries
 
-**[blox](https://github.com/plainkit/html)** - HTML component generation
+**[html](https://github.com/plainkit/html)** - HTML component generation
 
 - Type-safe HTML elements with element-specific attributes
 - Compile-time validation prevents invalid HTML structures
