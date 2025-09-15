@@ -52,8 +52,9 @@ input := Input(Href("/invalid")) // Compile error
 - **Cut the ceremony**: no bundlers, no client routers, no hydration steps to re‑build on the client what the server already rendered.
 - **Complexity where it pays**: use htmx or small JS where UX truly benefits; avoid shipping a framework to simulate navigation.
 - **Respect constraints**: favor resilience, first‑load speed, and cacheability over client‑side state machines.
+- **Prefer compile‑time guarantees**: catch invalid HTML/attributes during build; avoid runtime checks, reflection, and hydration errors.
 
-A bit blunt, because it matters: modern FE stacks often make simple things hard. SSR + hydration tries to undo SPA costs, yet you still ship the SPA. If you’re building documents, dashboards, CRUD apps, or back‑offices, HTML + server actions is faster to build, easier to reason about, and far cheaper to run. This is not a knock on FE developers — the toolchain grew to solve hard problems at massive scale. Most apps don’t need that scale of indirection.
+A bit blunt, because it matters: modern FE stacks often make simple things hard. SSR + hydration tries to undo SPA costs, yet you still ship the SPA. Plain targets server‑shaped apps — documents, dashboards, CRUD, back‑offices — where HTML + server actions are simpler to build, easier to reason about, and cheaper to run. When you truly need heavy client‑side state, offline mode, or complex realtime UX, use client frameworks where they shine.
 
 ## How It Works
 
