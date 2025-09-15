@@ -1,10 +1,10 @@
 # Plain
 
-Type-safe HTML component library for Go with compile-time validation and zero runtime overhead.
+Type‑safe HTML for Go. Server‑first, hypermedia by default, htmx as an optional extension. Compile‑time validation, zero hydration, no client runtime.
 
 ## What is Plain?
 
-Plain generates HTML using pure Go functions instead of template engines. Each HTML element is represented by a function that accepts typed arguments, providing compile-time safety and IDE autocomplete support.
+Plain generates HTML using pure Go functions instead of template engines. Each element is a typed function with compile‑time validation and IDE autocomplete. You build pages from links and forms, keep state on the server, and add interactivity progressively (e.g., with htmx) — no SSR/hydration/SPA machinery.
 
 ```go
 // This compiles and works
@@ -21,24 +21,39 @@ input := Input(Href("/invalid")) // Compile error
 
 ## Core Libraries
 
-**[html](https://github.com/plainkit/html)** - HTML component generation
+**`html`** — https://github.com/plainkit/html
 
 - Type-safe HTML elements with element-specific attributes
 - Compile-time validation prevents invalid HTML structures
 - Zero runtime overhead through method dispatch resolution
 - Modular architecture with one file per element type
 
-**[ui](https://github.com/plainkit/ui)** - Pre-built components
+**`ui`** — https://github.com/plainkit/ui
 
 - Modern UI components with consistent styling
 - Accessibility features built-in
-- Compose with core blox elements seamlessly
+- Compose with core `html` elements seamlessly
 
-**[icons](https://github.com/plainkit/icons)** - Icon libraries
+**`icons`** — https://github.com/plainkit/icons
 
 - Type-safe Lucide icons as Go functions
 - Customizable size, stroke, and color properties
 - Tree-shakeable - only icons you use are included
+
+**`htmx`** — https://github.com/plainkit/htmx
+
+- Server-driven interactions via HTML attributes
+- No client bundler, no hydration, no virtual DOM
+- Works as a small, optional enhancement layer
+
+## Philosophy
+
+- **Keep the web’s contract**: links and forms as the API, HTML as the media type, the server as the source of truth.
+- **Cut the ceremony**: no bundlers, no client routers, no hydration steps to re‑build on the client what the server already rendered.
+- **Complexity where it pays**: use htmx or small JS where UX truly benefits; avoid shipping a framework to simulate navigation.
+- **Respect constraints**: favor resilience, first‑load speed, and cacheability over client‑side state machines.
+
+A bit blunt, because it matters: modern FE stacks often make simple things hard. SSR + hydration tries to undo SPA costs, yet you still ship the SPA. If you’re building documents, dashboards, CRUD apps, or back‑offices, HTML + server actions is faster to build, easier to reason about, and far cheaper to run. This is not a knock on FE developers — the toolchain grew to solve hard problems at massive scale. Most apps don’t need that scale of indirection.
 
 ## How It Works
 
@@ -72,9 +87,10 @@ html := Render(component) // Direct string building
 ## Architecture
 
 ```
-blox/           # Core HTML elements (div, input, form, etc.)
+html/           # Core HTML elements (div, input, form, etc.)
 ui/             # Higher-level components (Card, Button, Modal)
 icons/          # Icon libraries (Lucide)
+htmx/           # htmx helpers and integration
 examples/       # Complete applications
 ```
 
@@ -105,11 +121,12 @@ func main() {
 
 ## Benefits
 
-- **IDE Support**: Full autocomplete, go-to-definition, and refactoring
-- **Compile Safety**: Invalid HTML structures fail at build time
+- **IDE support**: Full autocomplete, go-to-definition, and refactoring
+- **Compile safety**: Invalid HTML structures fail at build time
 - **Performance**: Zero runtime parsing or reflection overhead
-- **Testing**: Components are regular Go values - test like any Go code
+- **Testing**: Components are regular Go values — test like any Go code
 - **Modularity**: Each HTML element in its own file for easy contribution
+- **No hydration**: First paint is the final paint; progressive enhancement only
 
 ## License
 
@@ -117,4 +134,4 @@ MIT
 
 ---
 
-Built with ❤️ for developers who value simplicity and speed.
+Built with ❤️ for developers who value simplicity, speed, and the web’s original strengths.
