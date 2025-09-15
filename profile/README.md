@@ -47,8 +47,8 @@ input := Input(Href("/invalid")) // Compile error
 ```go
 card := Div(
     Class("card"),
-    Child(H1(Text("Title"), Class("card-header"))),
-    Child(P(Text("Content"), Class("card-body"))),
+    H1(Text("Title"), Class("card-header")),
+    P(Text("Content"), Class("card-body")),
 )
 ```
 
@@ -91,11 +91,11 @@ import (
 func main() {
     page := Html(
         Lang("en"),
-        Child(Head(Child(HeadTitle(Text("My Page"))))),
-        Child(Body(
-            Child(H1(Text("Hello, World!"))),
-            Child(P(Text("Built with Blox"))),
-        )),
+        Head(HeadTitle(Text("My Page"))),
+        Body(
+            H1(Text("Hello, World!")),
+            P(Text("Built with Blox")),
+        ),
     )
 
     fmt.Println("<!DOCTYPE html>")
