@@ -63,8 +63,8 @@ A bit blunt, because it matters: modern FE stacks often make simple things hard.
 ```go
 card := Div(
     Class("card"),
-    H1(Text("Title"), Class("card-header")),
-    P(Text("Content"), Class("card-body")),
+    H1(T("Title"), Class("card-header")),
+    P(T("Content"), Class("card-body")),
 )
 ```
 
@@ -81,7 +81,7 @@ Each element only accepts valid attributes:
 HTML generation uses compile-time method dispatch. No reflection, no template parsing:
 
 ```go
-component := Div(Class("test"), Text("Hello"))
+component := Div(Class("test"), T("Hello"))
 html := Render(component) // Direct string building
 ```
 
@@ -108,10 +108,10 @@ import (
 func main() {
     page := Html(
         Lang("en"),
-        Head(HeadTitle(Text("My Page"))),
+        Head(HeadTitle(T("My Page"))),
         Body(
-            H1(Text("Hello, World!")),
-            P(Text("Built with Plain")),
+            H1(T("Hello, World!")),
+            P(T("Built with Plain")),
         ),
     )
 
