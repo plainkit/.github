@@ -9,14 +9,14 @@ Plain generates HTML using pure Go functions instead of template engines. Each e
 ```go
 // This compiles and works
 input := Input(
-    InputType("email"),
-    InputName("email"),
-    Required(),
-    Placeholder("Enter email"),
+    AType("email"),
+    AName("email"),
+    ARequired(),
+    APlaceholder("Enter email"),
 )
 
 // This fails at compile time - Href is not valid for Input
-input := Input(Href("/invalid")) // Compile error
+input := Input(AHref("/invalid")) // Compile error
 ```
 
 ## Core Libraries
@@ -27,12 +27,6 @@ input := Input(Href("/invalid")) // Compile error
 - Compile-time validation prevents invalid HTML structures
 - Zero runtime overhead through method dispatch resolution
 - Modular architecture with one file per element type
-
-**`ui`** — https://github.com/plainkit/ui
-
-- Modern UI components with consistent styling
-- Accessibility features built-in
-- Compose with core `html` elements seamlessly
 
 **`icons`** — https://github.com/plainkit/icons
 
@@ -62,26 +56,18 @@ A bit blunt, because it matters: modern FE stacks often make simple things hard.
 
 ```go
 card := Div(
-    Class("card"),
-    H1(T("Title"), Class("card-header")),
-    P(T("Content"), Class("card-body")),
+    AClass("card"),
+    H1(T("Title"), AClass("card-header")),
+    P(T("Content"), AClass("card-body")),
 )
 ```
-
-### Type Safety
-
-Each element only accepts valid attributes:
-
-- `Input()` accepts `InputType()`, `InputName()`, `Required()`
-- `A()` accepts `Href()`, `Target()`, `Rel()`
-- `Button()` accepts `ButtonType()`, `Disabled()`
 
 ### Zero Runtime Cost
 
 HTML generation uses compile-time method dispatch. No reflection, no template parsing:
 
 ```go
-component := Div(Class("test"), T("Hello"))
+component := Div(AClass("test"), T("Hello"))
 html := Render(component) // Direct string building
 ```
 
@@ -107,8 +93,8 @@ import (
 
 func main() {
     page := Html(
-        Lang("en"),
-        Head(HeadTitle(T("My Page"))),
+        ALang("en"),
+        Head(Title(T("My Page"))),
         Body(
             H1(T("Hello, World!")),
             P(T("Built with Plain")),
